@@ -154,7 +154,7 @@ if st.button("Calculate CO2 Emissions"):
         st.info(f"☺️ CO2 Saved: {abs(CO2_Saving)} tonnes CO2 per year")
 
 # Button to toggle tips display
-if st.button("Tips to reduce your carbon footprint?"):
+if st.button("Tips to reduce your carbon footprint"):
         st.session_state.show_tips = True
 
 # Show tips if button clicked
