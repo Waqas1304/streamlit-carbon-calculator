@@ -3,9 +3,11 @@ import streamlit as st
 # Set wide layout and page name at the beginning
 st.set_page_config(layout="wide", page_title="Personal Carbon Calculator")
 
+
+
 EMISSION_FACTORS = {
     "France": {
-        "Transportation": 0.14,  # kgCO2/km
+        "Transportation": 0.103,  # kgCO2/km
         "Bus": 0.05,  # kgCO2/km
         "Electricity": 0.060,  # kgCO2/kWh
         "Diet": 1.25,  # kgCO2/meal
@@ -32,7 +34,7 @@ EMISSION_FACTORS = {
         "Plants": -22 #kg/tree
     },
     "Italy": {
-        "Transportation": 0.14,  # kgCO2/km
+        "Transportation": 0.119,  # kgCO2/km
         "Bus": 0.05,  # kgCO2/km
         "Electricity": 0.241,  # kgCO2/kWh
         "Diet": 1.25,  # kgCO2/meal
@@ -41,7 +43,7 @@ EMISSION_FACTORS = {
         "Plants": -22 #kg/tree
     },
     "Hungary": {
-        "Transportation": 0.14,  # kgCO2/km
+        "Transportation": 0.1385,  # kgCO2/km
         "Bus": 0.05,  # kgCO2/km
         "Electricity": 0.354,  # kgCO2/kWh
         "Diet": 1.25,  # kgCO2/meal
@@ -52,32 +54,32 @@ EMISSION_FACTORS = {
 }
 
 # Streamlit app code
-st.title("Carbon Calculator App ⚠️")
+st.title("Carbon Calculator ⚠️")
 
 # User inputs
 st.subheader("🌍 Your Country")
-country = st.selectbox("Select", ["India", "Pakistan", "France", "Italy", "Hungary"])
+country = st.selectbox("Select", ["France", "Hungary", "India", "Italy", "Pakistan"])
 
 col1, col2, col3 = st.columns(3)
 
 with col1:
-    st.subheader("🚗 Daily commute distance (in km)")
-    distance = st.slider("Distance", 0.0, 100.0, key="Car_distance_input")
+    st.subheader("🚗 Daily car distance (in km)")
+    distance = st.slider("Distance", 0.0, 120.0, key="Car_distance_input")
 
     st.subheader("💡 Monthly electricity consumption (in kWh)")
     electricity = st.slider("Electricity", 0.0, 1000.0, key="electricity_input")
 
-    st.subheader("💡 Number of Trees Planted (per month)")
+    st.subheader("🌳 Number of Trees Planted (per month)")
     Plants = st.number_input("Plants", 0, key="Plants_input")
 
 with col2:
-    st.subheader("🍽️ Waste generated per week (in kg)")
-    waste = st.slider("Waste", 0.0, 100.0, key="waste_input")
+    st.subheader("🗑️ Waste generated per week (in kg)")
+    waste = st.slider("Waste", 0.0, 120.0, key="waste_input")
 
     st.subheader("🍽️ Number of meals per day")
     meals = st.number_input("Meals", 0, key="meals_input")
 with col3:
-    st.subheader ("🚌 Daily commute distance (in km)")
+    st.subheader ("🚌 Daily Public Transport Use (in km)")
     Bus_Travel = st.slider("Distance", 0.0, 100.0, key="Bus_distance_input")
     
     st.subheader ("🚬 Number of cigarette per day ")
@@ -133,23 +135,23 @@ total_emissions = round(
 # When the button is clicked, we show the initial results
 if st.button("Calculate CO2 Emissions"):
     # Display results
-    st.header("Your Current Carbon Footprint")
+    st.header("Your Carbon Footprint")
 
     col3, col4 = st.columns(2)
 
     with col3:
         st.subheader("Carbon Emissions by Category")
-        st.info(f"🚗 Transportation: {transportation_emissions} tonnes CO2 per year")
+        st.info(f"🚗 Private Transport: {transportation_emissions} tonnes CO2 per year")
         st.info(f"💡 Electricity: {electricity_emissions} tonnes CO2 per year")
         st.info(f"🍽️ Diet: {diet_emissions} tonnes CO2 per year")
         st.info(f"🗑️ Waste: {waste_emissions} tonnes CO2 per year")
-        st.info(f"🚌 Bus: {Bus_Emissions} tonnes CO2 per year")
+        st.info(f"🚌 Public Transport: {Bus_Emissions} tonnes CO2 per year")
         st.info(f"🚬 Cigarettes: {cigarette_emissions} tonnes CO2 per year")
        
     with col4:
         st.subheader("Total Carbon Footprint")
         st.success(f"🌍 Your total carbon footprint is: {total_emissions} tonnes CO2 per year")
-        st.info(f"🌲 CO2 Saved: {CO2_Saving} tonnes CO2 per year")
+        st.info(f"☺️ CO2 Saved: {abs(CO2_Saving)} tonnes CO2 per year")
 
    
     
