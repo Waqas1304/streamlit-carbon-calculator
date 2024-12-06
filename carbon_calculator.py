@@ -69,7 +69,7 @@ with col1:
     st.subheader("💡 Monthly electricity consumption (in kWh)")
     electricity = st.slider("Electricity", 0.0, 1000.0, key="electricity_input")
 
-    st.subheader("🌳 Number of Trees Planted (per month)")
+    st.subheader("🌳 Number of Trees Planted per month")
     Plants = st.number_input("Plants", 0, key="Plants_input")
 
 with col2:
