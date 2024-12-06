@@ -69,7 +69,7 @@ with col1:
     st.subheader("💡 Monthly electricity consumption (in kWh)")
     electricity = st.slider("Electricity", 0.0, 1000.0, key="electricity_input")
 
-    st.subheader("🌳 Number of Trees Planted per month")
+    st.subheader("🌳 Number of Trees Planted (per month)")
     Plants = st.number_input("Plants", 0, key="Plants_input")
 
 with col2:
@@ -153,8 +153,27 @@ if st.button("Calculate CO2 Emissions"):
         st.success(f"🌍 Your total carbon footprint is: {total_emissions} tonnes CO2 per year")
         st.info(f"☺️ CO2 Saved: {abs(CO2_Saving)} tonnes CO2 per year")
 
-   
-    
+# Button to toggle tips display
+if st.button("Tips to reduce your carbon footprint?"):
+        st.session_state.show_tips = True
+
+# Show tips if button clicked
+if 'show_tips' in st.session_state and st.session_state.show_tips:
+        st.header("Carbon Reduction Tips ⚡")
+        st.write("""
+        1. **Use Public Transport or Bike**: Reduce emissions by opting for buses, trains, or biking instead of driving.
+        2. **Switch to Renewable Energy**: Power your home with renewable sources like solar or wind to cut electricity-related emissions.
+        3. **Reduce Meat Consumption**: Eating plant-based meals can significantly lower your carbon footprint.
+        4. **Minimize Waste**: Recycle, compost, and reduce single-use plastics to reduce emissions from waste management.
+        """)
+
+
+
+
+
+
+
+
 
 
 
